@@ -1,4 +1,4 @@
-package test_bdd_1.model;
+package testbdd1.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

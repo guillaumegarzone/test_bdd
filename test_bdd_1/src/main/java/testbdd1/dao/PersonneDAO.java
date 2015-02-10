@@ -1,8 +1,8 @@
-package test_bdd_1.dao;
+package testbdd1.dao;
 
 import javax.persistence.EntityManagerFactory;
 
-import test_bdd_1.model.Personne;
+import testbdd1.model.Personne;
 
 public class PersonneDAO extends DAO<Personne> {
 

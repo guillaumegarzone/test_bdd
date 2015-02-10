@@ -1,4 +1,4 @@
-package test_bdd_1.dao;
+package testbdd1.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

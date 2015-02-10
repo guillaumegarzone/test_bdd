@@ -1,4 +1,4 @@
-package test_bdd_1.dao;
+package testbdd1.test.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import test_bdd_1.model.Personne;
-import test_bdd_1.model.Projet;
+import testbdd1.dao.EMF;
+import testbdd1.dao.PersonneDAO;
+import testbdd1.model.Personne;
+import testbdd1.model.Projet;
 
 public class PersonneDAOBasiqueTest {
 
