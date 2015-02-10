@@ -5,8 +5,8 @@
 
 	<persistence-unit name="testh2" transaction-type="RESOURCE_LOCAL">
 
-		<class>test_bdd_1.model.Personne</class>
-		<class>test_bdd_1.model.Projet</class>
+		<class>testbdd1.model.Personne</class>
+		<class>testbdd1.model.Projet</class>
 <!-- 		<class>test_bdd_1.model.Tache</class> -->
 
 		<properties>
