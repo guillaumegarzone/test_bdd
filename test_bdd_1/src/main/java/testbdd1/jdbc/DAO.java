@@ -25,7 +25,7 @@ public class DAO {
 					+ p.getNom() + "', '" + p.getPrenom() + "', '"
 					+ p.getAdresse() + "')";
 			stmt.executeUpdate(sql);
-			System.out.println("element insere");
+			// System.out.println("element insere");
 			result = true;
 		} catch (SQLException e) {
 			System.out.println("Erreur sql");

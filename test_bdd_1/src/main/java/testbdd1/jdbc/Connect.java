@@ -41,16 +41,27 @@ public class Connect {
 		return result;
 	}
 
-	public static void findAll(Connection conn) throws SQLException {
+	public static int printAll(Connection conn) throws SQLException {
 		ResultSet result = conn.createStatement(
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
 				.executeQuery("SELECT * FROM PERSONNES");
 
+		// System.out.println(result. + " entries");
 		// System.out.println(result.getString("id"));
 		while (result.next()) {
 			System.out.println(result.getString("id"));
 		}
 		System.out.println(result.toString());
+		return result.getFetchSize();
+	}
 
+	public static int countEntries(Connection conn) throws SQLException {
+		int res = 0;
+		ResultSet result = conn.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+				.executeQuery("SELECT COUNT(*) FROM PERSONNES");
+		result.next();
+		res = result.getInt(1);
+		return res;
 	}
 }
