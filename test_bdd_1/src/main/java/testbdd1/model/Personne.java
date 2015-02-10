@@ -64,6 +64,10 @@ public class Personne {
 	public Personne() {
 	}
 
+	public Personne(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		String result = "";

@@ -14,7 +14,7 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testh2;create=true" />
 			<property name="javax.persistence.jdbc.user" value="testh2" />
 			<property name="javax.persistence.jdbc.password" value="testh2" />
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 			<property name="eclipselink.logging.level" value="info" />
