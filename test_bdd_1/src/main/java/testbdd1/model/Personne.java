@@ -9,17 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 @Entity
+@DatabaseTable(tableName = "personnes")
 public class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
+	@DatabaseField(id = true)
 	private String id;
-
+	@DatabaseField
 	private String nom;
-
+	@DatabaseField
 	private String prenom;
-
+	@DatabaseField
 	private String adresse;
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
