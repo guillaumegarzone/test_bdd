@@ -1,4 +1,4 @@
-package testbdd1.jdbc;
+package com.example.testjpa;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +11,11 @@ public class Connect {
 	public static Connection getConn() {
 		Connection c = null;
 		try {
+			Class.forName("org.h2.Driver");
 			// String url = "jdbc:h2:mem:testh2;create=true";
-			String url = "jdbc:h2:~/testh2;create=true";
-
+			String url = "jdbc:h2:/data/data/" + "com.example.testjpa"
+					+ "/data/hello" + ";FILE_LOCK=FS" + ";PAGE_SIZE=1024"
+					+ ";CACHE_SIZE=8192" + ";create=true";
 			String user = "testh2";
 			String passwd = "testh2";
 			Connection conn = DriverManager.getConnection(url, user, passwd);
@@ -43,7 +45,7 @@ public class Connect {
 		return result;
 	}
 
-	public static void fuck(Connection conn) throws SQLException {
+	public static String findAll(Connection conn) throws SQLException {
 		ResultSet result = conn.createStatement(
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
 				.executeQuery("SELECT * FROM PERSONNES");
@@ -53,6 +55,6 @@ public class Connect {
 			System.out.println(result.getString("id"));
 		}
 		System.out.println(result.toString());
-
+		return result.toString();
 	}
 }
