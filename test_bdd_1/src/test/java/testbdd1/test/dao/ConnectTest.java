@@ -39,7 +39,7 @@ public class ConnectTest {
 		p = new Personne("a1");
 		dao.create(p);
 
-		Connect.fuck(conn);
+		Connect.findAll(conn);
 
 		// System.out.println(dao.find(p.getId()));
 

@@ -41,7 +41,7 @@ public class Connect {
 		return result;
 	}
 
-	public static void fuck(Connection conn) throws SQLException {
+	public static void findAll(Connection conn) throws SQLException {
 		ResultSet result = conn.createStatement(
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
 				.executeQuery("SELECT * FROM PERSONNES");
