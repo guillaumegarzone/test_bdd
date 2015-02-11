@@ -1,90 +1,57 @@
 package testbdd1.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import java.sql.SQLException;
 
-public abstract class DAO<T> {
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.support.ConnectionSource;
 
-	private EntityManagerFactory emf;
-	private EntityManager em;
+public abstract class DAO<T, I> {
 
-	public EntityManager getEm() {
-		return em;
-	}
+	protected Dao<T, I> objectDao;
 
-	public DAO(EntityManagerFactory emf) {
-		this.emf = emf;
-	}
-
-	private void open() {
-		if (em == null) {
-			em = emf.createEntityManager();
-		}
-		em.getTransaction().begin();
-	}
-
-	private void close() {
-		if (em != null)
-			em.close();
-		em = null;
-	}
-
-	protected abstract T findObj(Object id);
-
-	protected abstract Object getIdObj(T obj);
-
-	protected abstract void updateObj(T objRef, T objToUpdate);
-
-	public boolean create(T obj) {
-		Boolean res = false;
+	protected boolean create(T obj) {
+		boolean result = false;
 		try {
-			open();
-			em.persist(obj);
-			em.getTransaction().commit();
-			res = true;
-		} finally {
-			close();
-		}
-		return res;
-	}
-
-	public T find(Object id) {
-		T result = null;
-		try {
-			open();
-			result = findObj(id);
-		} finally {
-			close();
+			result = (objectDao.create(obj) == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public boolean delete(T obj) {
-		Boolean res = false;
+	protected boolean delete(T obj) {
+		boolean result = false;
 		try {
-			open();
-			T toDelete = findObj(getIdObj(obj));
-			em.remove(toDelete);
-			em.getTransaction().commit();
-			res = true;
-		} finally {
-			close();
+			result = (objectDao.delete(obj) == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return res;
+		return result;
 	}
 
-	public boolean update(T obj) {
-		Boolean res = false;
+	protected boolean update(T obj) {
+		boolean result = false;
 		try {
-			open();
-			T objToUpdate = findObj(getIdObj(obj));
-			updateObj(obj, objToUpdate);
-			em.getTransaction().commit();
-			res = true;
-		} finally {
-			close();
+			result = (objectDao.update(obj) == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return res;
+		return result;
+	}
+
+	protected T find(I id) {
+		T result = null;
+		try {
+			result = objectDao.queryForId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public DAO(ConnectionSource conn, Class<T> clazz) throws SQLException {
+		objectDao = DaoManager.createDao(conn, clazz);
 	}
 
 }

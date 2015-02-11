@@ -4,7 +4,7 @@ import javax.persistence.EntityManagerFactory;
 
 import testbdd1.model.Personne;
 
-public class PersonneDAO extends DAO<Personne> {
+public class PersonneDAO extends DAOJpa<Personne> {
 
 	public PersonneDAO(EntityManagerFactory emf) {
 		super(emf);
