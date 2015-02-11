@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,7 +14,7 @@ import testbdd1.model.Personne;
 
 public class ConnectTest {
 
-	private static int MAX = 100000;
+	private static int MAX = 1000000;
 
 	public static Connection conn;
 
@@ -35,18 +34,25 @@ public class ConnectTest {
 
 	@Test
 	public void test() throws SQLException {
-		long deb = System.currentTimeMillis();
+		long deb;
+		long fin;
+		deb = System.currentTimeMillis();
 
 		conn = Connect.getConn();
 		Connect.initDb(conn);
 		dao = new DAO(conn);
+		fin = System.currentTimeMillis();
+
+		long init = fin - deb;
 
 		System.out.println("test");
 
+		deb = System.currentTimeMillis();
 		int i = 0;
 		for (i = 0; i < MAX; i++) {
-			Date date = new Date();
-			id = format.format(date) + System.nanoTime();
+			id = "p" + i;
+			// Date date = new Date();
+			// id = format.format(date) + System.nanoTime();
 			p = new Personne(id);
 			p.setNom("nom");
 			p.setPrenom("prenom");
@@ -55,11 +61,12 @@ public class ConnectTest {
 			dao.create(p);
 		}
 
+		fin = System.currentTimeMillis();
+		long insert = fin - deb;
 		System.out.println("entries : " + Connect.countEntries(conn));
 
-		long fin = System.currentTimeMillis();
-
-		System.out.println("duree : " + (fin - deb));
+		System.out.println("duree init : " + init);
+		System.out.println("duree insert : " + insert);
 
 	}
 
