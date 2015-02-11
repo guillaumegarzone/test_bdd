@@ -9,11 +9,12 @@ import testbdd1.connection.Connection;
 import testbdd1.dao.DAO;
 import testbdd1.model.Personne;
 
+import com.j256.ormlite.logger.LocalLog;
 import com.j256.ormlite.support.ConnectionSource;
 
 public class MainOrmTest {
 
-	private static final int MAX = 5000;
+	private static final int MAX = 100000;
 
 	private static DAO<Personne, String> personneDao;
 
@@ -21,6 +22,7 @@ public class MainOrmTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "info");
 		conn = Connection.getConnection();
 		personneDao = new DAO<Personne, String>(conn, Personne.class);
 	}
