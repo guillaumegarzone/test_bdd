@@ -6,11 +6,11 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 
-public abstract class DAO<T, I> {
+public class DAO<T, I> {
 
 	protected Dao<T, I> objectDao;
 
-	protected boolean create(T obj) {
+	public boolean create(T obj) {
 		boolean result = false;
 		try {
 			result = (objectDao.create(obj) == 1);
@@ -20,7 +20,7 @@ public abstract class DAO<T, I> {
 		return result;
 	}
 
-	protected boolean delete(T obj) {
+	public boolean delete(T obj) {
 		boolean result = false;
 		try {
 			result = (objectDao.delete(obj) == 1);
@@ -30,7 +30,7 @@ public abstract class DAO<T, I> {
 		return result;
 	}
 
-	protected boolean update(T obj) {
+	public boolean update(T obj) {
 		boolean result = false;
 		try {
 			result = (objectDao.update(obj) == 1);
@@ -40,7 +40,7 @@ public abstract class DAO<T, I> {
 		return result;
 	}
 
-	protected T find(I id) {
+	public T find(I id) {
 		T result = null;
 		try {
 			result = objectDao.queryForId(id);

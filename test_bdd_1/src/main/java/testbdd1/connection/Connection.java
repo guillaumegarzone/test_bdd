@@ -17,7 +17,7 @@ public class Connection {
 	public static ConnectionSource getConnection() {
 		if (conn == null) {
 			try {
-				conn = new JdbcConnectionSource(URL + ";create-true");
+				conn = new JdbcConnectionSource(URL + ";create=true");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
