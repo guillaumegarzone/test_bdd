@@ -2,22 +2,12 @@ package testbdd1.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@Entity
 @DatabaseTable(tableName = "personnes")
 public class Personne {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	@DatabaseField(id = true)
 	private String id;
 	@DatabaseField
@@ -27,7 +17,6 @@ public class Personne {
 	@DatabaseField
 	private String adresse;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Projet> projets;
 
 	public String getNom() {
@@ -75,10 +64,8 @@ public class Personne {
 
 	@Override
 	public String toString() {
-		String result = "";
-		result += this.id + "  :  " + this.nom + " ; " + this.prenom + " ; "
-				+ this.prenom + " ; " + this.projets.toString();
-		return result;
+		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom
+				+ ", adresse=" + adresse + ", projets=" + projets + "]";
 	}
 
 }
