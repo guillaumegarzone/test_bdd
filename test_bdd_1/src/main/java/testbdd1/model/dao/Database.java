@@ -1,5 +1,6 @@
 package testbdd1.model.dao;
 
+import java.io.File;
 import java.util.concurrent.ConcurrentNavigableMap;
 
 import org.mapdb.DB;
@@ -10,12 +11,15 @@ import testbdd1.model.Personne;
 public class Database {
 
 	private static final String COLLECTION_NAME = "test";
+	private static final String PATH = "src/main/resources/bdd/bdd";
 	private static DB db;
 	private static ConcurrentNavigableMap<String, Personne> map;
 
 	public static DB getDb() {
-		if (db == null)
-			db = DBMaker.newMemoryDB().make();
+		if (db == null) {
+			db = DBMaker.newFileDB(new File(PATH)).make();
+			// db = DBMaker.newMemoryDB().make();
+		}
 
 		return db;
 	}
@@ -29,9 +33,7 @@ public class Database {
 	public static void store(String id, Personne obj) {
 
 		// BTreeMap<String, Object> map = getDb().getTreeMap(COLLECTION_NAME);
-
 		getMap().put(id, obj);
-
 		getDb().commit();
 	}
 

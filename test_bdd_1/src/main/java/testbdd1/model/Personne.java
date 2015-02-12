@@ -7,7 +7,7 @@ public class Personne implements Serializable {
 
 	private static final long serialVersionUID = 3283521297227675920L;
 
-	private String id;
+	protected String id;
 
 	private String nom;
 
