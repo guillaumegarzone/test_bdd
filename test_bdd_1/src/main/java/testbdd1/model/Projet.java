@@ -1,6 +1,5 @@
 package testbdd1.model;
 
-
 public class Projet {
 
 	private String id;
@@ -40,9 +39,7 @@ public class Projet {
 
 	@Override
 	public String toString() {
-		String result = "";
-		result += this.id + " : " + this.nom;
-		return result;
+		return "Projet [id=" + id + ", nom=" + nom + "]";
 	}
 
 }
