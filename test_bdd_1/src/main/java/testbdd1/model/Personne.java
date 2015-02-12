@@ -66,10 +66,8 @@ public class Personne {
 
 	@Override
 	public String toString() {
-		String result = "";
-		result += this.id + "  :  " + this.nom + " ; " + this.prenom + " ; "
-				+ this.prenom + " ; " + this.projets.toString();
-		return result;
+		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom
+				+ ", adresse=" + adresse + ", projets=" + projets + "]";
 	}
 
 }
