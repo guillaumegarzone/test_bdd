@@ -61,7 +61,7 @@ public class MainOrmTest {
 		int i = 0;
 		deb = System.currentTimeMillis();
 		for (i = 0; i < MAX; i++) {
-			Personne p = new Personne("p" + i);
+			Personne p = new Personne(i);
 			p.setNom("nom");
 			p.setPrenom("prenom");
 			p.setAdresse("adresse");

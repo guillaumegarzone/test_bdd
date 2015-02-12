@@ -1,24 +1,29 @@
 package testbdd1.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-@Entity
+@DatabaseTable(tableName = "projets")
 public class Projet {
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private String id;
-
+	@DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+	private int id;
+	@DatabaseField
 	private String nom;
 
-	@OneToMany
+	@DatabaseField(foreign = true)
+	private Personne personne;
+
+	public Personne getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
+	}
+
+	// @OneToMany
 	// private List<Tache> taches;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	// @ManyToMany(cascade = CascadeType.PERSIST)
 	// private List<Personne> responsables;
 	public String getNom() {
 		return nom;
@@ -27,6 +32,10 @@ public class Projet {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	// @DatabaseField(foreign = true, foreignAutoCreate = true,
+	// foreignAutoRefresh = true)
+	// private Personne responsable;
 
 	// public List<Tache> getTaches() {
 	// return taches;
@@ -44,7 +53,15 @@ public class Projet {
 	// this.responsables = responsables;
 	// }
 
-	public String getId() {
+	// public Personne getResponsable() {
+	// return responsable;
+	// }
+	//
+	// public void setResponsable(Personne responsable) {
+	// this.responsable = responsable;
+	// }
+
+	public int getId() {
 		return id;
 	}
 
@@ -53,9 +70,8 @@ public class Projet {
 
 	@Override
 	public String toString() {
-		String result = "";
-		result += this.id + " : " + this.nom;
-		return result;
+		return "Projet [id=" + id + ", nom=" + nom + ", personne="
+				+ personne.getId() + "]";
 	}
 
 }

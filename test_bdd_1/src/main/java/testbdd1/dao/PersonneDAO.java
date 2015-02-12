@@ -26,7 +26,7 @@ public class PersonneDAO extends DAOJpa<Personne> {
 		objToUpdate.setNom(objRef.getNom());
 		objToUpdate.setPrenom(objRef.getPrenom());
 		objToUpdate.setAdresse(objRef.getAdresse());
-		objToUpdate.setProjets(objRef.getProjets());
+		// objToUpdate.setProjets(objRef.getProjets());
 		// TODO missing fields
 	}
 

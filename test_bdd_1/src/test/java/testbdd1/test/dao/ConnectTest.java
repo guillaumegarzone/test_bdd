@@ -54,7 +54,7 @@ public class ConnectTest {
 		for (i = 0; i < MAX; i++) {
 			Date date = new Date();
 			id = format.format(date) + System.nanoTime();
-			p = new Personne(id);
+			p = new Personne(i);
 			p.setNom("nom");
 			p.setPrenom("prenom");
 			p.setAdresse("adresse");

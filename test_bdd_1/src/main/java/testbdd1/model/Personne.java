@@ -1,15 +1,16 @@
 package testbdd1.model;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "personnes")
 public class Personne {
 
-	@DatabaseField(id = true)
-	private String id;
+	@DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+	private int id;
 	@DatabaseField
 	private String nom;
 	@DatabaseField
@@ -17,7 +18,23 @@ public class Personne {
 	@DatabaseField
 	private String adresse;
 
-	private List<Projet> projets;
+	// @DatabaseField(foreign = true, foreignAutoRefresh = true,
+	// foreignAutoCreate = true)
+	// private Projet projet;
+
+	@ForeignCollectionField(eager = true)
+	private Collection<Projet> projets;
+
+	// @ForeignCollectionField
+	// private ForeignCollection<Projet> projets;
+
+	// public Projet getProjet() {
+	// return projet;
+	// }
+	//
+	// public void setProjet(Projet projet) {
+	// this.projet = projet;
+	// }
 
 	public String getNom() {
 		return nom;
@@ -43,22 +60,22 @@ public class Personne {
 		this.adresse = adresse;
 	}
 
-	public List<Projet> getProjets() {
+	public Collection<Projet> getProjets() {
 		return projets;
 	}
 
-	public void setProjets(List<Projet> projets) {
+	public void setProjets(Collection<Projet> projets) {
 		this.projets = projets;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
 	public Personne() {
 	}
 
-	public Personne(String id) {
+	public Personne(int id) {
 		this.id = id;
 	}
 

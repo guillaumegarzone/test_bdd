@@ -26,12 +26,12 @@ public class OrmTest {
 
 		ConnectionSource connectionSource = new JdbcConnectionSource(url);
 
-		Dao<Personne, String> personneDao = DaoManager.createDao(
+		Dao<Personne, Integer> personneDao = DaoManager.createDao(
 				connectionSource, Personne.class);
 
 		TableUtils.createTable(connectionSource, Personne.class);
 
-		Personne p = new Personne("a0");
+		Personne p = new Personne(0);
 		p.setNom("nomPersonne");
 		personneDao.create(p);
 
