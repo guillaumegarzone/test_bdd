@@ -1,25 +1,12 @@
 package testbdd1.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
-@Entity
 public class Projet {
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+
 	private String id;
 
 	private String nom;
 
-	@OneToMany
-	// private List<Tache> taches;
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	// private List<Personne> responsables;
 	public String getNom() {
 		return nom;
 	}
