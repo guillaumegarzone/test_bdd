@@ -1,25 +1,36 @@
 package testbdd1.model.dao;
 
-import org.mapdb.BTreeMap;
+import java.util.concurrent.ConcurrentNavigableMap;
+
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
+
+import testbdd1.model.Personne;
 
 public class Database {
 
 	private static final String COLLECTION_NAME = "test";
 	private static DB db;
+	private static ConcurrentNavigableMap<String, Personne> map;
 
 	public static DB getDb() {
 		if (db == null)
-			DBMaker.newMemoryDB().make();
+			db = DBMaker.newMemoryDB().make();
 
 		return db;
 	}
 
-	public static void store(String id, Object obj) {
-		BTreeMap<String, Object> map = db.getTreeMap(COLLECTION_NAME);
+	public static ConcurrentNavigableMap<String, Personne> getMap() {
+		if (map == null)
+			map = getDb().getTreeMap(COLLECTION_NAME);
+		return map;
+	}
 
-		map.put(id, obj);
+	public static void store(String id, Personne obj) {
+
+		// BTreeMap<String, Object> map = getDb().getTreeMap(COLLECTION_NAME);
+
+		getMap().put(id, obj);
 
 		getDb().commit();
 	}

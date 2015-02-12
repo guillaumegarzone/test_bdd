@@ -1,6 +1,10 @@
 package testbdd1.model;
 
-public class Projet {
+import java.io.Serializable;
+
+public class Projet implements Serializable {
+
+	private static final long serialVersionUID = -706874183711826839L;
 
 	private String id;
 

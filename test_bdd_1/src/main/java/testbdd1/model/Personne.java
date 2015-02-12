@@ -1,8 +1,11 @@
 package testbdd1.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Personne {
+public class Personne implements Serializable {
+
+	private static final long serialVersionUID = 3283521297227675920L;
 
 	private String id;
 
@@ -51,6 +54,10 @@ public class Personne {
 	}
 
 	public Personne() {
+	}
+
+	public Personne(String string) {
+		this.id = string;
 	}
 
 	@Override
