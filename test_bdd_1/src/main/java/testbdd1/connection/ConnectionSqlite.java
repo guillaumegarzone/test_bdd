@@ -46,9 +46,9 @@ public class ConnectionSqlite {
 		try {
 			ConnectionSource connection = ConnectionSqlite.getConnection();
 			TableUtils.createTableIfNotExists(connection, Projet.class);
-//			TableUtils.clearTable(connection, Projet.class);
+			TableUtils.clearTable(connection, Projet.class);
 			TableUtils.createTableIfNotExists(connection, Personne.class);
-//			TableUtils.clearTable(connection, Personne.class);
+			TableUtils.clearTable(connection, Personne.class);
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();

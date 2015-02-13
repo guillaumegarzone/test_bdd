@@ -1,4 +1,4 @@
-package testbdd1.test.dao;
+package testbdd1.oldTests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -16,7 +16,7 @@ import testbdd1.model.Projet;
 import com.j256.ormlite.logger.LocalLog;
 import com.j256.ormlite.support.ConnectionSource;
 
-public class ListOrmTest {
+public class TestListOrm {
 
 	private DAO<Personne, Integer> personneDao;
 	private ConnectionSource conn;

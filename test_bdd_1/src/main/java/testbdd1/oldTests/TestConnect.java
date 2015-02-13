@@ -1,4 +1,4 @@
-package testbdd1.test.dao;
+package testbdd1.oldTests;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import testbdd1.jdbc.Connect;
 import testbdd1.jdbc.DAO;
 import testbdd1.model.Personne;
 
-public class ConnectTest {
+public class TestConnect {
 
 	private static int MAX = 100;
 

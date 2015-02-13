@@ -1,4 +1,4 @@
-package testbdd1.test.dao;
+package testbdd1.oldTests;
 
 import java.sql.SQLException;
 
@@ -13,7 +13,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-public class OrmTest {
+public class TestOrm {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
