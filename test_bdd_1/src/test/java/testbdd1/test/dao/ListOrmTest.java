@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import testbdd1.connection.Connection;
+import testbdd1.connection.ConnectionSqlite;
 import testbdd1.dao.DAO;
 import testbdd1.model.Personne;
 import testbdd1.model.Projet;
@@ -29,8 +29,8 @@ public class ListOrmTest {
 		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "debug");
 
 		// deb = System.currentTimeMillis();
-		conn = Connection.getConnection();
-		assertTrue(Connection.initDb());
+		conn = ConnectionSqlite.getConnection();
+		assertTrue(ConnectionSqlite.initDb());
 		// fin = System.currentTimeMillis();
 		personneDao = new DAO<Personne, Integer>(conn, Personne.class);
 		projetDao = new DAO<Projet, Integer>(conn, Projet.class);

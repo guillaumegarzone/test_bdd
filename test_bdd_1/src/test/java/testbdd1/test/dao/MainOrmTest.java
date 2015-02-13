@@ -1,5 +1,6 @@
 package testbdd1.test.dao;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
@@ -7,7 +8,8 @@ import java.sql.SQLException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import testbdd1.connection.Connection;
+import testbdd1.connection.ConnectionH2;
+import testbdd1.connection.ConnectionSqlite;
 import testbdd1.dao.DAO;
 import testbdd1.model.Personne;
 
@@ -16,9 +18,9 @@ import com.j256.ormlite.support.ConnectionSource;
 
 public class MainOrmTest {
 
-	private static final int MAX = 1000000;
+	private static final int MAX = 1000;
 
-	private static DAO<Personne, String> personneDao;
+	private static DAO<Personne, Integer> personneDao;
 
 	private static ConnectionSource conn;
 
@@ -28,39 +30,70 @@ public class MainOrmTest {
 	}
 
 	// @Test
-	public void global() throws SQLException {
-		int i = 0;
-		for (i = 0; i < 10; i++) {
-			// new Thread() {
-			// @Override
-			// public void run() {
-			// try {
-			test();
-			// } catch (SQLException e) {
-			// e.printStackTrace();
-			// }
-			// };
-			// }.start();
+	// public void global() throws SQLException {
+	// ConnectionSource conn = ConnectionSqlite.getConnection();
+	// test(conn);
+	// conn.close();
+	//
+	// conn = ConnectionH2.getConnection();
+	// test(conn);
+	// conn.close();
+	// }
 
+	@Test
+	public void test2() throws SQLException {
+		long deb, fin;
+		conn = ConnectionSqlite.getConnection();
+		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "info");
+
+		deb = System.currentTimeMillis();
+		assertTrue(ConnectionSqlite.initDb());
+		fin = System.currentTimeMillis();
+		personneDao = new DAO<Personne, Integer>(conn, Personne.class);
+		long init = fin - deb;
+
+		int i = 125467864;
+		deb = System.currentTimeMillis();
+		// for (i = 1; i <= MAX; i++) {
+		// Personne p = new Personne(i);
+		// p.setNom("nom");
+		// p.setPrenom("prenom");
+		// p.setAdresse("adresse");
+		// personneDao.create(p);
+		// }
+		fin = System.currentTimeMillis();
+		long insert = fin - deb;
+		deb = System.currentTimeMillis();
+		for (i = 1; i <= MAX; i++) {
+			Personne p2 = personneDao.find(i);
+			assertNotNull(p2);
+			// System.out.println(p2.toString());
 		}
+		fin = System.currentTimeMillis();
+		long find = fin - deb;
+		System.out.println("Temps init : " + init);
+		System.out.println("Temps insertion : " + insert);
+		System.out.println("Temps find : " + find);
+
+		ConnectionSqlite.closeConnection();
+
 	}
 
 	@Test
 	public void test() throws SQLException {
 		long deb, fin;
-
+		conn = ConnectionH2.getConnection();
 		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "info");
 
 		deb = System.currentTimeMillis();
-		conn = Connection.getConnection();
-		assertTrue(Connection.initDb());
+		assertTrue(ConnectionH2.initDb());
 		fin = System.currentTimeMillis();
-		personneDao = new DAO<Personne, String>(conn, Personne.class);
+		personneDao = new DAO<Personne, Integer>(conn, Personne.class);
 		long init = fin - deb;
 
-		int i = 0;
+		int i = 125467864;
 		deb = System.currentTimeMillis();
-		for (i = 0; i < MAX; i++) {
+		for (i = 1; i <= MAX; i++) {
 			Personne p = new Personne(i);
 			p.setNom("nom");
 			p.setPrenom("prenom");
@@ -70,9 +103,10 @@ public class MainOrmTest {
 		fin = System.currentTimeMillis();
 		long insert = fin - deb;
 		deb = System.currentTimeMillis();
-		for (i = 0; i < MAX; i++) {
-			Personne p = personneDao.find("p" + i);
-			// System.out.println(p.toString());
+		for (i = 1; i <= MAX; i++) {
+			Personne p2 = personneDao.find(i);
+			assertNotNull(p2);
+			// System.out.println(p2.toString());
 		}
 		fin = System.currentTimeMillis();
 		long find = fin - deb;
@@ -80,7 +114,7 @@ public class MainOrmTest {
 		System.out.println("Temps insertion : " + insert);
 		System.out.println("Temps find : " + find);
 
-		Connection.closeConnection();
+		ConnectionH2.closeConnection();
 
 	}
 

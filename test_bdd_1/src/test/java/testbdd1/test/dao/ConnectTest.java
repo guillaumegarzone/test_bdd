@@ -15,7 +15,7 @@ import testbdd1.model.Personne;
 
 public class ConnectTest {
 
-	private static int MAX = 1000000;
+	private static int MAX = 100;
 
 	public static Connection conn;
 

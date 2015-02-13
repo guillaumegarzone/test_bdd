@@ -42,4 +42,29 @@ public class OrmTest {
 		connectionSource.close();
 
 	}
+
+	@Test
+	public void test2() throws SQLException, ClassNotFoundException {
+
+		Class.forName("org.sqlite.JDBC");
+		String url = "jdbc:sqlite:test.db;create=true";
+
+		ConnectionSource connectionSource = new JdbcConnectionSource(url);
+
+		Dao<Personne, Integer> personneDao = DaoManager.createDao(
+				connectionSource, Personne.class);
+
+		TableUtils.createTable(connectionSource, Personne.class);
+
+		Personne p = new Personne(0);
+		p.setNom("nomPersonne");
+		personneDao.create(p);
+
+		Personne pers = personneDao.queryForId(p.getId());
+
+		System.out.println(pers.toString());
+
+		connectionSource.close();
+
+	}
 }
