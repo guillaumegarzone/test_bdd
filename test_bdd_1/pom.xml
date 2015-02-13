@@ -13,12 +13,13 @@
 			<version>4.11</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.mapdb</groupId>
-			<artifactId>mapdb</artifactId>
-			<version>1.0.6</version>
-		</dependency>
-
+	<dependency>
+		<groupId>iBoxDB</groupId>
+		<artifactId>iBoxDB</artifactId>
+		<version>1.9.1</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/libs/iBoxDBv191.jar</systemPath>
+	</dependency>
 
 	</dependencies>
 
