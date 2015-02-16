@@ -5,25 +5,28 @@ import java.sql.SQLException;
 import testbdd1.model.Personne;
 import testbdd1.model.Projet;
 
+import com.j256.ormlite.db.DatabaseType;
+import com.j256.ormlite.db.DerbyEmbeddedDatabaseType;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-public class ConnectionH2 {
+public class ConnectionDerby {
 
 	private static ConnectionSource conn;
 
-	public final static String URL = "jdbc:h2:~/BddTest/testH2.db;create=true";
-	public final static String CRYPT = ";CIPHER=AES";
+	public final static String URL = "jdbc:derby:~/BddTest/test";
 
 	public static ConnectionSource getConnection() {
 		if (conn == null) {
 			try {
+				DatabaseType databaseType = new DerbyEmbeddedDatabaseType();
 				String user = "test";
 				String pwd = "test";
-				// String cpwd = "test test";
-				conn = new JdbcConnectionSource(URL, user, pwd);
-				// conn = new JdbcConnectionSource(URL+CRYPT, user, cpwd);
+
+				conn = new JdbcConnectionSource(URL + ";create=true", user,
+						pwd, databaseType);
+				// conn = new Jd
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -46,15 +49,16 @@ public class ConnectionH2 {
 		boolean result = false;
 		ConnectionSource connection = ConnectionH2.getConnection();
 		try {
-			TableUtils.createTableIfNotExists(connection, Projet.class);
-			TableUtils.createTableIfNotExists(connection, Personne.class);
+			TableUtils.dropTable(connection, Projet.class, true);
+			TableUtils.dropTable(connection, Personne.class, true);
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			TableUtils.clearTable(connection, Projet.class);
-			TableUtils.clearTable(connection, Personne.class);
+			TableUtils.createTableIfNotExists(connection, Projet.class);
+			TableUtils.createTableIfNotExists(connection, Personne.class);
+			result = result & true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

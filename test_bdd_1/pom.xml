@@ -30,7 +30,13 @@
 			<artifactId>ormlite-jdbc</artifactId>
 			<version>4.48</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.11.1.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.j256.ormlite</groupId>
 			<artifactId>ormlite-android</artifactId>

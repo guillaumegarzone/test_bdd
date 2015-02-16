@@ -19,13 +19,14 @@ public class TestOrm {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "fatal");
+		System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "trace");
 	}
 
 	@Test
-	public void test() throws SQLException {
-
-		String url = "jdbc:h2:mem:account;create=true";
+	public void test() throws SQLException, ClassNotFoundException {
+		Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+		System.out.println("TEST DERBY");
+		String url = "jdbc:derby:mem:account;create=true";
 
 		ConnectionSource connectionSource = new JdbcConnectionSource(url);
 
@@ -49,7 +50,7 @@ public class TestOrm {
 
 	@Test
 	public void test2() throws SQLException, ClassNotFoundException {
-
+		System.out.println("TEST SQLite");
 		Class.forName("org.sqlite.JDBC");
 		String url = "jdbc:sqlite:test.db";
 
