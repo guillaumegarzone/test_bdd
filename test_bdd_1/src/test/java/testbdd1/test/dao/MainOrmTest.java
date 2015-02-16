@@ -110,11 +110,11 @@ public class MainOrmTest {
 
 	@Test
 	public void global() throws SQLException {
-		System.out.println("////// SQL LITE //////");
+		System.out.println("////// H2 //////");
 		testH2(MAX1);
 		testH2(MAX2);
 		testH2(MAX3);
-		System.out.println("\n\n////// H2 //////");
+		System.out.println("\n\n////// SQL LITE //////");
 		testSqlite(MAX1);
 		testSqlite(MAX2);
 		testSqlite(MAX3);
