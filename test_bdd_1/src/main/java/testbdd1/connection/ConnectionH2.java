@@ -46,18 +46,20 @@ public class ConnectionH2 {
 		boolean result = false;
 		ConnectionSource connection = ConnectionH2.getConnection();
 		try {
+			TableUtils.dropTable(connection, Projet.class, true);
+			TableUtils.dropTable(connection, Personne.class, true);
 			TableUtils.createTableIfNotExists(connection, Projet.class);
 			TableUtils.createTableIfNotExists(connection, Personne.class);
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			TableUtils.clearTable(connection, Projet.class);
-			TableUtils.clearTable(connection, Personne.class);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// try {
+		// TableUtils.clearTable(connection, Projet.class);
+		// TableUtils.clearTable(connection, Personne.class);
+		// } catch (SQLException e) {
+		// e.printStackTrace();
+		// }
 		return result;
 	}
 
