@@ -13,8 +13,8 @@ import testbdd1.model.Personne;
 public class MapDBTest {
 
 	private static final int MAX1 = 100;
-	private static final int MAX2 = 10000;
-	private static final int MAX3 = 100000;
+	private static final int MAX2 = 1000;
+	private static final int MAX3 = 10000;
 	private static final String COLLECTION_NAME = "testMem";
 	private static final String PATH = "src/main/resources/bdd/bdd";
 
@@ -72,29 +72,29 @@ public class MapDBTest {
 
 	@Test
 	public void mainTest() {
-		Thread t1 = new Thread() {
-			@Override
-			public void run() {
-				test(MAX1);
-			}
-		};
-		t1.start();
-
-		Thread t2 = new Thread() {
-			@Override
-			public void run() {
-				test(MAX2);
-			}
-		};
-		t2.start();
-
-		Thread t3 = new Thread() {
-			@Override
-			public void run() {
-				test(MAX3);
-			}
-		};
-		t3.start();
+		// Thread t1 = new Thread() {
+		// @Override
+		// public void run() {
+		// test(MAX1);
+		// }
+		// };
+		// t1.start();
+		//
+		// Thread t2 = new Thread() {
+		// @Override
+		// public void run() {
+		// test(MAX2);
+		// }
+		// };
+		// t2.start();
+		//
+		// Thread t3 = new Thread() {
+		// @Override
+		// public void run() {
+		// test(MAX3);
+		// }
+		// };
+		// t3.start();
 
 		Thread t4 = new Thread() {
 			@Override
@@ -120,9 +120,9 @@ public class MapDBTest {
 		};
 		t6.start();
 		try {
-			t1.join();
-			t2.join();
-			t3.join();
+			// t1.join();
+			// t2.join();
+			// t3.join();
 			t4.join();
 			t5.join();
 			t6.join();
