@@ -1,4 +1,4 @@
-package testbdd1.test.dao;
+package testbdd1.otherTess;
 
 import java.util.ArrayList;
 import java.util.List;

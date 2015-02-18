@@ -2,19 +2,15 @@ package testbdd1.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Personne {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private String id;
+	private int id;
 
 	private String nom;
 
@@ -22,7 +18,7 @@ public class Personne {
 
 	private String adresse;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@OneToMany
 	private List<Projet> projets;
 
 	public String getNom() {
@@ -57,11 +53,15 @@ public class Personne {
 		this.projets = projets;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	public Personne() {
+	}
+
+	public Personne(int i) {
+		this.id = i;
 	}
 
 	@Override

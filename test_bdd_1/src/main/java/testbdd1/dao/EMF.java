@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class EMF {
 
 	private static EntityManagerFactory emf;
-	public static String PERSIST_UNIT_NAME = "testh2";
+	public static String PERSIST_UNIT_NAME = "testjpa";
 
 	public static EntityManager getEm() {
 		if (emf == null)
@@ -20,6 +20,13 @@ public class EMF {
 		if (emf == null)
 			emf = Persistence.createEntityManagerFactory(PERSIST_UNIT_NAME);
 		return emf;
+	}
+
+	public static void reset() {
+		if (emf != null) {
+			emf.close();
+			emf = null;
+		}
 	}
 
 }

@@ -5,8 +5,8 @@ import javax.persistence.EntityManagerFactory;
 
 public abstract class DAO<T> {
 
-	private EntityManagerFactory emf;
-	private EntityManager em;
+	protected EntityManagerFactory emf;
+	protected EntityManager em;
 
 	public EntityManager getEm() {
 		return em;
@@ -41,6 +41,19 @@ public abstract class DAO<T> {
 			open();
 			em.persist(obj);
 			em.getTransaction().commit();
+			res = true;
+		} finally {
+			close();
+		}
+		return res;
+	}
+
+	public boolean lazyCreate(T obj) {
+		Boolean res = false;
+		try {
+			open();
+			em.persist(obj);
+			// em.getTransaction().commit();
 			res = true;
 		} finally {
 			close();
