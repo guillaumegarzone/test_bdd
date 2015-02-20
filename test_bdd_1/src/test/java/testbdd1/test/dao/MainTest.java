@@ -4,13 +4,10 @@ import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 
-import javax.persistence.EntityManager;
-
 import org.junit.Test;
 
-import testbdd1.dao.DaoPersonne;
 import testbdd1.dao.EMF;
-import testbdd1.dao.PersonneDAO;
+import testbdd1.dao.PersonneDao2;
 import testbdd1.model.Personne;
 
 public class MainTest {
@@ -31,16 +28,10 @@ public class MainTest {
 	public static void test(int MAX) throws SQLException {
 		long deb, fin;
 		deb = System.currentTimeMillis();
-		EMF.reset();
-		// PersonneDAO personneDao = new PersonneDAO(EMF.getEmf());
-		DaoPersonne personneDao = new DaoPersonne();
-		EMF.getEmf();
-		// conn = ConnectionH2.getConnection();
-		// assertTrue(ConnectionH2.initDb());
-		// EntityManager em = EMF.getEm();
-		// em.close();
+		EMF.init();
 		fin = System.currentTimeMillis();
-		// personneDao = new DAO<Personne, Integer>(conn, Personne.class);
+		// DaoPersonne personneDao = new DaoPersonne();
+		PersonneDao2 personneDao = new PersonneDao2();
 		long init = fin - deb;
 
 		int i = 1;
@@ -51,13 +42,12 @@ public class MainTest {
 			p.setPrenom("prenom-");
 			p.setAdresse("adresse-");
 			// if (i == MAX)
-			personneDao.create(p);
+			// personneDao.create(p);
 			// else
-			// personneDao.lazyCreate(p);
+			personneDao.lazyCreate(p);
 		}
-		personneDao.endTransaction();
-		// EMF.getEm().getTransaction().commit();
-		// EMF.getEm().close();
+		// personneDao.endTransaction();
+		personneDao.commit();
 		fin = System.currentTimeMillis();
 		long insert = fin - deb;
 		deb = System.currentTimeMillis();

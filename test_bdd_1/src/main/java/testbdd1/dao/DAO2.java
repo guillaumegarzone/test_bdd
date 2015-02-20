@@ -19,7 +19,7 @@ public abstract class DAO2<T, I> {
 
 	public void beginTransaction() {
 		if (em == null) {
-			em = EMF.getEm();
+			em = DB.getEm();
 			em.getTransaction().begin();
 		}
 	}
@@ -75,7 +75,7 @@ public abstract class DAO2<T, I> {
 			result = em.find(clazz, id);
 		} finally {
 			// close();
-			endTransaction();
+			// endTransaction();
 		}
 		return result;
 	}
@@ -108,6 +108,10 @@ public abstract class DAO2<T, I> {
 			endTransaction();
 		}
 		return res;
+	}
+
+	public void commit() {
+
 	}
 
 }

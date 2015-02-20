@@ -29,4 +29,9 @@ public class EMF {
 		}
 	}
 
+	public static void init() {
+		reset();
+		emf = EMF.getEmf();
+	}
+
 }

@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import testbdd1.dao.DaoPersonne;
-import testbdd1.dao.EMF;
+import testbdd1.dao.DB;
 import testbdd1.dao.PersonneDAO;
 import testbdd1.model.Personne;
 
@@ -20,7 +20,7 @@ public class TestBidon {
 
 	@Test
 	public void test() {
-		EntityManager em = EMF.getEm();
+		EntityManager em = DB.getEm();
 		// PersonneDAO dao = new PersonneDAO(null);
 		DaoPersonne dao = new DaoPersonne();
 

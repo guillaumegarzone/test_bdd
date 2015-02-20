@@ -15,7 +15,7 @@ public class PersonneDAO {
 
 	private void open() {
 		if (em == null) {
-			em = EMF.getEm();
+			em = DB.getEm();
 			em.getTransaction().begin();
 		}
 	}

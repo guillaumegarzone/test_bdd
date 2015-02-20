@@ -21,9 +21,7 @@
 
 			<!-- configure the database on startup to avoid costing first operation -->
 			<property name="eclipselink.deploy-on-startup" value="true"/>
-			
-			<property name="eclipselink.logging.level" value="OFF" />
-<!-- 			<property name="eclipselink.logging.level" value="FINER" /> -->
+			<property name="eclipselink.logging.level" value="INFO"/>
 		</properties>
 	</persistence-unit>
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import testbdd1.dao.EMF;
+import testbdd1.dao.DB;
 import testbdd1.dao.PersonneDAO;
 import testbdd1.model.Personne;
 import testbdd1.model.Projet;
@@ -20,7 +20,7 @@ public class PersonneDAOBasiqueTest {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		System.out.println("Creation de l'emf");
-		dao = new PersonneDAO(EMF.getEmf());
+		dao = new PersonneDAO(DB.getEmf());
 		System.out.println("emf creee");
 	}
 
